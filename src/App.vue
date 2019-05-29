@@ -1,7 +1,10 @@
 <template>
   <div id="app">
       <tabbar class="tabbar" v-if="this.$route.meta.showTabber"></tabbar>
-    <router-view/>
+    <keep-alive>
+          <router-view  v-if="$route.meta.keepAlive"/>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"/>
   </div>
 </template>
 
@@ -27,5 +30,6 @@ body{
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1000;
 }
 </style>

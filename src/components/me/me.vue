@@ -124,7 +124,7 @@
             ———&nbsp;&nbsp; <span>我常买•<a>FAVORITE</a></span> &nbsp;&nbsp; ———
         </div>
         <div class="body_contents_instrument_push">
-            <div v-for="(item,index) in shop_llist" :key="index"> 
+            <div v-for="(item,index) in shop_llist" :key="index" @click="me_xiangqing(item)"> 
                 <img :src="item.image" >
                 <p>{{item.title}}</p>
                 <div>
@@ -162,13 +162,35 @@ export default {
 
         }
     },
-    created(){
+    methods:{
+        me_xiangqing(item){
+            var obj={
+                item:item
+            }
+            this.$router.push({name:'particulars_one',params:{obj}})
+        }
+    },
+    mounted(){
         axios.get('/HmItemPush').then((res)=>{
                 // console.log(res.data)
                 this.shop_llist=res.data
 
         })
+    },
+     beforeRouteLeave(to, from, next) {
+    let position = window.scrollY  //记录离开页面的位置
+    if (position == null) position = 0
+    this.$store.dispatch('mechangeRecruitScrollY',position) //离开路由时把位置存起来
+    next()
+  },
+  watch: {
+    '$route' (to, from) {
+      if (to.name === 'me') {//跳转的的页面的名称是"NewRecruit",这里就相当于我们listview页面，或者原始页面
+        let recruitScrollY = this.$store.getters.merecruitScrollY
+        window.scroll(0, recruitScrollY)
+      }
     }
+  }
     
 }
 </script>
@@ -499,7 +521,6 @@ export default {
     width: 0.7rem;
     height: 0.7rem;
     border-radius: 50%;
-    background: red;
     position: absolute;
     top: -0.1rem;
 }

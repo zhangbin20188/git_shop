@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from "axios";
 import router from '@/router/index';
-import { stat } from 'fs';
 Vue.use(Vuex)
 
 var state={
@@ -12,10 +11,30 @@ var state={
     right_list:[], //默认第一条数据
     particularsList:{},
     shopcartList:[], //购物车数据,
+    contents_fen_list:[],
+    contents_bazaar_list:[],
+    contents_like_list:[],
     shopcartLength:[],//请求购物车的长度
-    joinPages:[]
+    joinPages:[],
+    recruitScrollY:0,
+    merecruitScrollY:0
 }
 var getters={
+    merecruitScrollY(){
+        return state.merecruitScrollY
+    },
+    recruitScrollY(){
+        return state.recruitScrollY
+    },
+    contents_like_list(){
+        return state.contents_like_list
+    },
+    contents_bazaar_list(){
+        return state.contents_bazaar_list 
+    },
+    contents_fen_list(){
+        return state.contents_fen_list 
+    },
     img_list(){
         return state.img_list 
     },
@@ -42,6 +61,35 @@ var getters={
     }
 }
 var actions={
+    mechangeRecruitScrollY(ctx,position){
+        ctx.commit('mechangeRecruitScrollY',position)
+    },
+    changeRecruitScrollY(ctx,position){
+        ctx.commit('changeRecruitScrollY',position)
+    },
+    contents_like_list(ctx){
+        axios.get('/ShowContentList')
+        .then((res)=>{
+            ctx.commit('contents_like_list',res.data)
+        })
+    },
+    contents_bazaar_list(ctx){
+        axios.get('/ParityItem')
+        .then((res)=>{
+            // console.log(res.data) 
+            ctx.commit('contents_bazaar_list',res.data)
+    })
+    },
+    contents_fen_list(ctx){
+        axios.get('/ShowCatListTop')
+        .then((res)=>{
+            // console.log(res.data) 
+            ctx.commit('contents_fen_list',res.data)
+    })
+    },
+
+
+
     title_name(ctx,name){
         ctx.commit('title_name',name)
     },
@@ -121,6 +169,26 @@ var actions={
     }
 }
 var mutations={
+    mechangeRecruitScrollY(state,position){
+        state.merecruitScrollY=position
+    },
+    changeRecruitScrollY(state,position){
+        state.recruitScrollY=position
+    },
+    contents_like_list(state,data){
+        // console.log(data)
+        state.contents_like_list=data
+    },
+    contents_bazaar_list(state,data){
+        // console.log(data)
+        state.contents_bazaar_list=data
+    },
+    contents_fen_list(state,test){
+        // console.log(test)
+        state.contents_fen_list=test
+    },
+
+
     title_name(state,name){
         state.title_name=name
     },
