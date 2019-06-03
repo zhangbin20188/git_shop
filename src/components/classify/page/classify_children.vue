@@ -149,8 +149,6 @@ ul{
     height: 50px;
     background: #fff;
     border-bottom: 1px solid #e5e5e5;
-    /* display:flex;
-    justify-content: center; */
     line-height: 50px;
     font-weight: bold;
     font-size: 18px;

@@ -17,7 +17,6 @@
             <p>作者：{{particulars_list.author}}</p>
             <p>{{particulars_list.attemptNum}}人做过</p>
         </div>
-
         <div class="contents_inventory">
             <div class="contents_inventory_title">
                     <span>食材清单</span><span>/共{{particulars_list.hmRepertoires.length}}件</span>

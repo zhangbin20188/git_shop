@@ -6,9 +6,9 @@ import router from './router'
 import rem from './rem.js'
 import './assets/iconfont/iconfont.css'
 import store from './store'
+import { Toast } from 'mint-ui'
 
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -16,6 +16,6 @@ new Vue({
   components: { App },
   template: '<App/>',
   rem,
-  store
+  store,
 
 })

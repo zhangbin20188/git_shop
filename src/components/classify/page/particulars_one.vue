@@ -7,7 +7,6 @@
                     <div class="num">1</div>
                 </i>
             </div>
-
         <div class="content">
             <div class="header-text">
                 <div>
@@ -45,7 +44,6 @@
         <div class="btn" @click="joinShoppcart">加入购物车</div>
     </div>
 </template>
-
 <script>
 export default {
     name:'particulars_one',
@@ -59,6 +57,7 @@ export default {
             window.history.go(-1)
         },
         joinShoppcart(){
+            console.log(this.$store.getters.particulars.id)
             this.$store.dispatch('joinShoppcart',this.$store.getters.particulars.id)
         },
         joinShop(){

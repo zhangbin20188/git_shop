@@ -34,7 +34,6 @@ export default {
                 {id:3,icon:'icon-wujiaoxing',test:'评价鳄鱼'},{id:4,icon:'icon-lajitong',test:'清除缓存'},
                 {id:5,icon:'icon-wo',test:'关于我们'},{id:6,icon:'icon-lingdang',test:'开启通知'},{id:7,icon:'icon-gongwenbao',test:'企业采购'}
             ]
-
         }
     },
     methods:{
@@ -42,10 +41,14 @@ export default {
             this.$router.push({name:"me"})
         },
         logout_botton(){
-            alert(1)
+
+            // alert(1)
         },
         set_botton(index){
-            alert(index)
+            if(index==1){
+                this.$router.push({name:'me_children_set_site'})
+            }
+            // alert(index)
         }
     }
     

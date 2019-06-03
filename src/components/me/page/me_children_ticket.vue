@@ -14,27 +14,28 @@
         <div v-for="(item,index) in quan_list" :key="index">
             <div class="man_title">
                 <div>
-                    <p>{{item.title}}</p>
-                    <span>{{item.usage}}</span>
+                    <p>{{item.cou_name}}</p>
+                    <span>线上/门店购物通用</span>
                 </div>
                 <div>
-                    {{item.num}}
+                    5
                 </div>
             </div>
-            <p>{{item.deadline}}</p>
+            <p>有效期：{{item.begintime}}-{{item.endtime}}</p>
             <div class="body_tear">
-                    <span>{{item.titles}}</span>
+                    <span>{{item.remark}}</span>
                     <span @click="check_usage(item.id)">查看可用商品<i class="iconfont icon-jiantou"></i></span>
             </div>
         </div>
     </div>
 
-    <div v-else>131312</div>
+    <div v-else>暂无赠品券</div>
     
 </div>
 
 </template>
 <script>
+import axios from "axios";
 export default {
     name:'me_children_ticket',
     data(){
@@ -44,16 +45,20 @@ export default {
                     {id:1,test:'抵用券',num:2},
                     {id:2,test:'赠品券',num:''}
                 ],
-                quan_list:[
-                    {id:1,title:'鳄鱼精酿啤酒5元券',usage:'线上/门店购物通用',num:5,deadline:'有效期：2019.05.15 00:00 - 2019.06.09 23:59',titles:'指定商品满10.00减5.00元'},
-                    {id:2,title:'鳄鱼新鲜蔬菜20元券',usage:'线上/门店购物通用',num:20,deadline:'有效期：2019.05.18 00:00 - 2019.05.21 23:59',titles:'指定商品满50.00减20.00元'},
-                    {id:3,title:'鳄鱼休闲零食50元券',usage:'线上/门店购物通用',num:50,deadline:'有效期：2019.06.15 00:00 - 2019.06.26 23:59',titles:'指定商品满200.00减50.00元'}
-                ]
+                quan_list:[]
         }
+    },
+    mounted(){
+        axios.get('/ShowCouponList').then((res)=>{
+            this.quan_list=res.data
+            this.option_list[0].num=res.data.length
+        })
+
+
     },
     methods:{
         comback(){
-            this.$router.push({name:'me'})
+            window.history.go(-1)
 
         },
         option_list_botton(index){

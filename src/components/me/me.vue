@@ -110,14 +110,11 @@
                     <p>常用工具</p>
             </div>
             <div class="body_contents_instrument_info">
-                <div v-for="(item,index) in cang_list" :key="index">
+                <div v-for="(item,index) in cang_list" :key="index" @click="instrument(index)">
                     <i class="iconfont" :class="item.icons"></i>
                     <div>{{item.title}}</div>
                     <div>{{item.test}}</div>
                 </div>
-                
-
-
             </div>
         </div>
         <div class="body_contents_instrument_push_title">
@@ -163,6 +160,12 @@ export default {
         }
     },
     methods:{
+        instrument(index){
+            if(index==1){
+                    this.$router.push({name:'me_children_shop'})
+            }
+                
+        },
         me_xiangqing(item){
             var obj={
                 item:item

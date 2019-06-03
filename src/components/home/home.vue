@@ -10,7 +10,7 @@
                 <i class="iconfont icon-sousuo"></i>
                 搜索美食....
             </router-link>
-            <div class="chat"><i class="iconfont icon-luntan1"></i></div>
+            <div class="chat"><i class="iconfont icon-luntan1" @click="home_information"></i></div>
         </div>
 
 
@@ -107,8 +107,12 @@ export default {
     }
   },
   methods:{
+    home_information(){
+      this.$router.push({name:'home_information'})
+
+    },
     self_message(){
-      this.$router.push({name:'me_chidren_message'})
+      this.$router.push({name:'me'})
     },
     dafenlei(item){
          this.$router.push({name:'classify_children',params:{item}})
