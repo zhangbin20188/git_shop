@@ -137,12 +137,12 @@ var actions={
         })
     },
     joinShoppcart(ctx,id){
-        console.log(id)
+        // console.log(id)
         var params = new URLSearchParams();
         params.append('id',id)
         axios.post('/insertCart',params)
         .then((res)=>{
-            console.log(res)
+            // console.log(res)
         })
     },
     joinShop(ctx,id){
@@ -159,7 +159,7 @@ var actions={
         params.append('userid',id)
         axios.post('/ShowCartList',params)
         .then((res)=>{
-                console.log(res.data)
+                // console.log(res.data)
                 ctx.commit('shopcartLength',res.data)
         })  
     },
@@ -207,12 +207,12 @@ var mutations={
 
     },
     particulars(state,data){
-        // console.log(data)
+        console.log(data)
         state.particularsList = data
         // console.log(state.particularsList)
     },
     joinShop(state,data){
-        console.log(data)
+        // console.log(data)
         state.shopcartList = data
     },
     shopcartLength(state,data){
