@@ -295,8 +295,6 @@ export default {
         margin-right: -4px
     }
     .details-wrap{
-        width: 500px;
-        height: 500px;
         padding: 0 13px;
         box-sizing: border-box;
         background: #fafafa;

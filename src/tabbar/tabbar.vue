@@ -11,7 +11,7 @@
         </router-link>
         <router-link to="/community"  tag="div" class="tabbar_title" :class="{active:this.$route.path.includes('/community')}">
           <i class="iconfont icon-luntan1"></i>
-          <span>聊天</span>
+          <span>活动</span>
         </router-link>
         <router-link to="/shopcart"  tag="div" class="tabbar_title" :class="{active:this.$route.path.includes('/shopcart')}">
           <i class="iconfont icon-gouwuche"></i>

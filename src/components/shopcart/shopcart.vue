@@ -97,26 +97,38 @@ export default {
                 this.$store.getters.shopcartList[index].num = 0
             }else{
                 this.$store.getters.shopcartList[index].num--
-            }
+            } 
         },
         joinPages(){
             if(this.checkboxitem.length>0){
-                var id = this.checkboxitem[0].cartid
+                var arr=[]
+                // var id = this.checkboxitem[0].cartid
+                for(var i=0;i<this.checkboxitem.length;i++){
+                    arr.push(this.checkboxitem[i].cartid)
+                }
+                // console.log(arr)
                 this.activeTure = true
-                this.$router.push({name:'pages',params:{id}})
+                this.$router.push({name:'pages',params:{arr}})
                 // this.$store.dispatch('joinPages',this.checkboxitem) 
             }else{
                 this.activeTure = false
             }
         },
         delShop(){
-            var cartid=this.checkboxitem[0].cartid
-            this.shopcartList.splice(0,1)
-            this.reload(cartid)
+           if(this.checkboxitem.length>0){
+                var delArr = []
+            // var cartid=this.checkboxitem[0].cartid
+            for(var i=0;i<this.checkboxitem.length;i++){
+                delArr.push(this.checkboxitem[i].cartid)
+            }
+                // this.shopcartList.splice(arr,arr.length)
+                // this.reload(delArr)
+                this.delReload(delArr)
+           }
         },
-        reload(cartid){
+        reload(delArr){
             //  console.log(id)
-            axios.get('/DeleteCart?cartid='+cartid+'')
+            axios.get('/DeleteCart?arr='+delArr+'')
  
               //then获取成功；response成功后的返回值（对象）
  
@@ -126,6 +138,29 @@ export default {
         
             })
         },
+        delReload(delArr){
+            var arr=[1,2,3,4,5,6];
+            var arr1=[4,5,6,7,8,9];
+
+            let len = arr.length;
+            for(let i = len-1;i >=0;i--){
+                let value = arr[i]
+                if(arr1.indexOf(value) > -1){
+                    arr.splice(i,1)
+                }
+            }
+            let result = arr.concat(arr1)
+            console.log(result);
+            // console.log(delArr)
+            // for(var i =0;this.shopcartList.length;i++){
+            //     for(var j=0;j<delArr.length;j++){
+            //         if(this.shopcartList[i].cartid == delArr[i]){
+            //             this.shopcartList = []
+            //             this.shopcartList.push(i)
+            //         }
+            //     }
+            // }
+        }
     },
     computed:{
         all(){

@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "/":{
-        target:"http://192.168.22.46:8088",
+        target:"http://www.liangqijin.cn:8080/Hema",
         changeOrigin: true,
     	}
     },

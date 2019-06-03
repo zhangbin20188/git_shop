@@ -16,36 +16,36 @@
 
         <div class="content-list">
 
-            <div class="wra-time">
+            <div class="wra-time" v-for="(item,index) in this.confirmList" :key="index">
                 <div class="time-head">
                     <div><i class="iconfont icon-time1 iconTime"></i></div>
                     <div><span>送达时间</span></div>
-                    <div><span>选择送达时间</span></div>
+                    <div><span>预计今天送达</span></div>
                     <div><i class="iconfont icon-xiangyou1 iconRight"></i></div>
                 </div>
 
                 <div class="list-right">
                     <div class="list-img">
-                        <img :src="this.confirmList.pic_path">
+                        <img :src="item.pic_path">
                     </div>
 
                     <div class="list-text">
-                        <p class="list-text-title">{{this.confirmList.title}}</p>
+                        <p class="list-text-title">{{item.title}}</p>
                         <div class="standard">
                             <!-- <span>规格：<i>750ml</i></span> -->
-                            <span>{{this.confirmList.norm}}</span>
+                            <span>{{item.norm}}</span>
                         </div>
                         <div class="standard">
-                            <span>单价:<i>￥<span>{{this.confirmList.price}}</span>/瓶</i></span>
+                            <span>单价:<i>￥<span>{{item.price}}</span>/瓶</i></span>
                         </div>
                         <div class="standard">
-                            <span>数量:<i>{{this.confirmList.num}}</i>瓶</span>
+                            <span>数量:<i>{{item.num}}</i>瓶</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="confirmTotal">
-                    <p><span class="total">小计：</span><span>￥<i>{{this.confirmList.price}}</i></span></p>
+                    <p><span class="total">小计：</span><span>￥<i>{{item.price}}</i></span></p>
                 </div>
             </div>
   
@@ -81,7 +81,8 @@ export default {
             this.$router.push({name:'shopcart'})
         },
         reload(){
-            axios.get('/ConfirmOrdes?cartid='+this.$route.params.id+'')
+            // console.log(this.$route.params.arr)
+            axios.get('/ConfirmOrdes?arr='+this.$route.params.arr+'')
  
               //then获取成功；response成功后的返回值（对象）
  
